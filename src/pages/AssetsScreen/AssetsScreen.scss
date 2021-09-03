@@ -1,0 +1,37 @@
+.assetsscreen {
+  @apply h-screen bg-dark-400 flex;
+
+  &_maincontainer {
+    @apply flex flex-col my-28 w-80v laptop:w-75v mx-auto overflow-y-auto;
+    &_titlecontainer{
+        @apply flex justify-between items-center pb-4;
+    &_title{
+        @apply text-caption-3 leading-caption-3 tablet:text-paragraph-1 tablet:leading-paragraph-1   ml-4  font-semibold text-white;
+    }
+    &_tokensdropdown{
+        @apply bg-dark-300 rounded-lg p-2.5 text-caption-2 leading-caption-2 text-primary-purple-100 outline-none;
+    }
+}
+&_topcontainer{
+    @apply flex flex-col xl:flex-row justify-between;
+}
+    &_innercontainer{
+        @apply flex flex-col overflow-y-auto pr-4 tablet:pr-8;
+        &::-webkit-scrollbar{
+            @apply w-1.5 bg-dark-200;
+        }
+        &::-webkit-scrollbar-thumb{
+            @apply rounded-md h-16;
+            background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
+        }
+        &::-webkit-scrollbar-track{
+            @apply rounded-md;
+        }
+        &_projectcontainer{
+            background: radial-gradient(143.33% 143.33% at 82.41% -4.96%, rgba(132, 214, 164, 0.2) 0%, rgba(18, 28, 32, 0.2) 100%);
+            @apply px-6 py-4 my-4 mx-4 text-white flex rounded-lg laptop:rounded-2xl bg-opacity-30 w-60v tablet:w-35v laptop:w-30v desktop:w-20v h-fit-content;
+
+        }
+    }
+  }
+}

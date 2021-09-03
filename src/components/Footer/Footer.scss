@@ -1,0 +1,7 @@
+.footer {
+  @apply h-16 bottom-0 left-0 fixed flex bg-dark-400 w-full desktop:px-24 justify-center desktop:justify-end items-center border-t border-dark-200;
+  &_text {
+    @apply text-primary-purple-100 font-light text-caption-4 leading-caption-1;
+  }
+}
+

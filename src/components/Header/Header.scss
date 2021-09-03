@@ -1,0 +1,36 @@
+.header {
+  @apply h-20 top-0 left-0 fixed flex w-full px-8 tablet:px-12 laptop:px-20 desktop:px-24 justify-between items-center;
+  &_logo {
+    @apply h-7 tablet:h-10 laptop:h-11;
+  }
+  &_navbar {
+    @apply hidden tablet:flex items-center text-white;
+    &_text {
+      @apply text-primary-purple-100 font-light laptop:text-paragraph-2 laptop:leading-paragraph-2 desktop:text-caption-1 desktop:leading-caption-1;
+    }
+    &_gap {
+      @apply bg-dark-200 h-14 mx-6 w-px border-dark-200;
+    }
+    &_button {
+      @apply rounded-lg flex px-2 py-2 tablet:px-5 tablet:py-3 laptop:px-4 laptop:py-3 items-center justify-center text-center cursor-pointer w-44;
+      background: linear-gradient(
+        180deg,
+        #a58cff 0%,
+        #8162f4 33.91%,
+        #4c31b2 113.01%
+      );
+      &_text {
+        @apply text-caption-3 leading-caption-3 tablet:text-caption-1 tablet:leading-caption-1 desktop:text-caption-1 desktop:leading-caption-1 font-medium;
+      }
+    }
+    &_logoutbutton {
+      @apply rounded-lg border border-dark-200 flex px-3 py-2 tablet:px-5 tablet:py-3 laptop:px-4 laptop:py-2 items-center justify-center text-center w-44;
+      &_text {
+        @apply text-caption-3 leading-caption-3 tablet:text-caption-1 tablet:leading-caption-1 desktop:text-caption-1 desktop:leading-caption-1 font-medium;
+      }
+      &_icon {
+        @apply h-8 cursor-pointer;
+      }
+    }
+  }
+}
