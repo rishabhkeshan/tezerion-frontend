@@ -51,7 +51,7 @@ export class InternalWalletApi {
       `${this.betterCallDevUrl}/account/${this.network}/${this.walletId}/token_balances`
     );
     let balances = res.data.balances;
-    this.getTokensPrices().then((tokens) => {
+    const tokens = await this.getTokensPrices().then((tokens) => {
       tokens.forEach((token) => {
         let tokenBalance = balances.find(
           (balance) => balance.contract === token.address
@@ -69,5 +69,6 @@ export class InternalWalletApi {
       console.log("yolo", this.data);
       return this.data;
     });
+    return tokens;
   }
 }
