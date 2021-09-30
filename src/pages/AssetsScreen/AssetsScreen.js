@@ -11,73 +11,73 @@ import { useEffect, useState } from "react";
 import TokenPriceGraphContainer from "../../containers/AssetsScreen/TokenPriceGraphContainer";
 import TokenDetailsContainer from "../../containers/AssetsScreen/TokenDetailsContainer";
 import OtherAssetsTableContainer from "../../containers/AssetsScreen/OtherAssetsTableContainer";
+import { InternalWalletApi } from "../../api/walletApi";
 
 function AssetsScreen() {
+  const internalWalletApi = new InternalWalletApi(
+    "tz1gcBJ67BBdCxeekyzwjSNf4ovgjyDBStuc",
+    "granadanet"
+  );
 
-const [projectDisplayID, setProjectDisplayID] = useState(0);
-  const [projectData, setProjectData] = useState([]);
-  const [projectOverviewData, setProjectOverviewData] = useState(null);
-  const [allProjectData, setAllProjectData] = useState([]);
-    useEffect(() => {
-      loadProjectData();
-    }, []);
-    const loadProjectData = async () => {
-    const getChartData = (datasource) => {
-      let charXAxis = [];
-      let charYAxis = [];
-      datasource.forEach((element) => {
-        charXAxis.push(element.displayGraphDate);
-        charYAxis.push(
-          parseInt(element.totalSupply) / 10 ** parseInt(element.decimal)
-        );
-      });
-     } };
+  const [tokenDisplayID, setTokenDisplayID] = useState(0);
+  const [tokenData, setTokenData] = useState([]);
+  useEffect(() => {
+    loadTokenData();
+  }, []);
+  const loadTokenData = async () => {
+    const accountDetails = await internalWalletApi.getWalletTokens();
+    console.log(accountDetails);
+    setTokenData(accountDetails);
+  };
   return (
     <>
-
-        <article className="assetsscreen">
-          <Header />
-          <section className="assetsscreen_maincontainer">
-            <div className="assetsscreen_maincontainer_titlecontainer">
-              <div className="assetsscreen_maincontainer_titlecontainer_title">
-                Assets
-              </div>
-              <select
-                className="assetsscreen_maincontainer_titlecontainer_tokensdropdown"
-                name="selectList"
-                id="selectList"
-                onChange={(event) => {
-                  setProjectDisplayID(event.target.value);
-                }}
-              >
-                <option value="" disabled selected hidden>
-                  Select Token
-                </option>
-                <option>XTZ</option>
-                <option>Kalam</option>
-              </select>
+      <article className="assetsscreen">
+        <Header />
+        <section className="assetsscreen_maincontainer">
+          <div className="assetsscreen_maincontainer_titlecontainer">
+            <div className="assetsscreen_maincontainer_titlecontainer_title">
+              Assets
             </div>
-            <div className="assetsscreen_maincontainer_innercontainer">
-              <div className="assetsscreen_maincontainer_topcontainer">
-                <TokenPriceGraphContainer
-                  projectOverviewData={projectOverviewData}
-                  projectDisplayID={projectDisplayID}
-                />
-                <TokenDetailsContainer
-                  projectOverviewData={projectOverviewData}
-                  projectDisplayID={projectDisplayID}
-                />
-              </div>
-              <div className="assetsscreen_maincontainer_bottomcontainer">
-                <OtherAssetsTableContainer
-                  projectOverviewData={projectOverviewData}
-                  projectDisplayID={projectDisplayID}
-                />
-              </div>
+            <select
+              className="assetsscreen_maincontainer_titlecontainer_tokensdropdown"
+              name="selectList"
+              id="selectList"
+              onChange={(event) => {
+                setTokenDisplayID(event.target.value);
+              }}
+            >
+              {tokenData?.tokens
+                ? tokenData.tokens.map((token, i) => {
+                    return (
+                      <option
+                        value={i}
+                      >{`${token.symbol}`}</option>
+                    );
+                  })
+                : null}
+            </select>
+          </div>
+          <div className="assetsscreen_maincontainer_innercontainer">
+            <div className="assetsscreen_maincontainer_topcontainer">
+              <TokenPriceGraphContainer
+                tokenData={tokenData}
+                tokenDisplayID={tokenDisplayID}
+              />
+              <TokenDetailsContainer
+                tokenData={tokenData}
+                tokenDisplayID={tokenDisplayID}
+              />
             </div>
-          </section>
-          <Footer />
-        </article>
+            <div className="assetsscreen_maincontainer_bottomcontainer">
+              <OtherAssetsTableContainer
+                tokenData={tokenData}
+                tokenDisplayID={tokenDisplayID}
+              />
+            </div>
+          </div>
+        </section>
+        <Footer />
+      </article>
     </>
   );
 }
