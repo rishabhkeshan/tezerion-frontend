@@ -7,13 +7,20 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { InternalWalletApi } from "../../api/walletApi";
+import { WalletSwap } from "../../api/walletSwap";
 
 function HomeScreen() {
   const internalWalletApi = new InternalWalletApi(
     "tz1gcBJ67BBdCxeekyzwjSNf4ovgjyDBStuc",
     "granadanet"
   );
-  internalWalletApi.getWalletTokens();
+
+  (async () => {
+    let res = await internalWalletApi.getWalletTokens();
+    console.log("lmfao", res);
+  })();
+  // const walletSwapApi = new WalletSwap();
+  // walletSwapApi.getEstimation(10000000);
   return (
     <article className="homescreen">
       <Header hiddenNav={true} />
