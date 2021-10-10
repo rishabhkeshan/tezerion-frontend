@@ -2087,11 +2087,11 @@
     "source-map" "^0.7.3"
 
 "@quipuswap/sdk@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@quipuswap/sdk/-/sdk-2.3.0.tgz#53e6afcc9db07c383e001b9029894110be35c84d"
-  integrity sha512-evrCHiJ5Oby6VokRdO0w6OwT5dv3H/ae6f3TkL0+Te0uWcQlCntc4oUB/FtbvDHWdliSYVvFMFGCcvBtKfdXzQ==
+  "integrity" "sha512-evrCHiJ5Oby6VokRdO0w6OwT5dv3H/ae6f3TkL0+Te0uWcQlCntc4oUB/FtbvDHWdliSYVvFMFGCcvBtKfdXzQ=="
+  "resolved" "https://registry.npmjs.org/@quipuswap/sdk/-/sdk-2.3.0.tgz"
+  "version" "2.3.0"
   dependencies:
-    bignumber.js "^9.0.1"
+    "bignumber.js" "^9.0.1"
 
 "@rollup/plugin-node-resolve@^7.1.1":
   "integrity" "sha512-RxtSL3XmdTAE2byxekYLnx+98kEUOrPHF/KRVjLH+DEIHy6kjIw7YINQzn+NXiH/NTrQLAwYs0GWB+csWygA9Q=="
@@ -2298,10 +2298,10 @@
     "bignumber.js" "^9.0.1"
     "lodash" "^4.17.21"
 
-"@taquito/taquito@^10.2.1":
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@taquito/taquito/-/taquito-10.2.1.tgz#0627cb38cbb0a8407e7c5088fd5e7e41f0631f89"
-  integrity sha512-ay61aKhFQPnYGu5d9jqEvaZE0EzE6tO9MD+5vOu6/NFVThBd7ysOQS1PB0VprL9SupM1NVDFnEJ8GtE8SYgk8g==
+"@taquito/taquito@^10.0.0", "@taquito/taquito@^10.2.1", "@taquito/taquito@^8 || ^9":
+  "integrity" "sha512-ay61aKhFQPnYGu5d9jqEvaZE0EzE6tO9MD+5vOu6/NFVThBd7ysOQS1PB0VprL9SupM1NVDFnEJ8GtE8SYgk8g=="
+  "resolved" "https://registry.npmjs.org/@taquito/taquito/-/taquito-10.2.1.tgz"
+  "version" "10.2.1"
   dependencies:
     "@taquito/http-utils" "^10.2.1"
     "@taquito/michel-codec" "^10.2.1"

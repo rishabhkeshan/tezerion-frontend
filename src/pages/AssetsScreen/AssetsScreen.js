@@ -64,8 +64,7 @@ function AssetsScreen() {
                 tokenDisplayID={tokenDisplayID}
               />
               <TokenDetailsContainer
-                tokenData={tokenData}
-                tokenDisplayID={tokenDisplayID}
+                tokenSelectedData={tokenData.tokens[tokenDisplayID]}
               />
             </div>
             <div className="assetsscreen_maincontainer_bottomcontainer">

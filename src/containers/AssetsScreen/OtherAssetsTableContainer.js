@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import BigNumber from "bignumber.js";
 const currentDate = new Date();
 let datetime = currentDate.toLocaleString("en-US");
-function OtherAssetsTableContainer({ projectOverviewData, projectDisplayID }) {
+function OtherAssetsTableContainer({ tokenData }) {
   const [allocationTableDetails, setAllocationTableDetails] = useState([
     { sr_no: "01", name: "Kalam", pricetz: "0.103", priceusd: "0.8704" },
     { sr_no: "02", name: "Kolibri", pricetz: "0.529", priceusd: "2.6189" },
@@ -20,49 +20,51 @@ function OtherAssetsTableContainer({ projectOverviewData, projectDisplayID }) {
     <section className="otherassetstablecontainer">
       <div className="otherassetstablecontainer_title">All Assets</div>
 
-      <Table
-        data={allocationTableDetails}
-        pagination={false}
-        scroll={{ y: 280 }}
-      >
+      <Table data={tokenData.tokens} pagination={false} scroll={{ y: 280 }}>
         <Column
           title="Sr.No"
-          dataIndex="sr_no"
+          dataIndex="contractAddress"
           key="sr_no"
           width={displayWidth < 768 ? `15%` : `10%`}
           align="center"
-        />
-        <Column
-          title="Name"
-          dataIndex="name"
-          key="name"
-          width={
-            displayWidth < 1280 && displayWidth > 767
-              ? `25%`
-              : displayWidth < 768
-              ? "35%"
-              : `35%`
-          }
-          align="left"
           render={(text) => {
-            if (displayWidth > 1280) return <div>{text}</div>;
-            else if (displayWidth > 767)
-              return <div>{`${text.substr(0, 6)}...${text.substr(-4)}`}</div>;
-            else
-              return <div>{`${text.substr(0, 4)}...${text.substr(-4)}`}</div>;
+            return <div>{text}</div>;
           }}
         />
         <Column
-          title="Price(ꜩ)"
-          dataIndex={displayWidth < 1280 ? `pricetz` : "pricetz"}
-          align="center"
-          width={displayWidth < 1280 && displayWidth > 767 ? `25%` : `20%`}
-          key="date"
+          title="Symbol"
+          dataIndex="symbol"
+          key="symbol"
+          width={
+            displayWidth < 1280 && displayWidth > 767
+              ? `20%`
+              : displayWidth < 768
+              ? "25%"
+              : `25%`
+          }
+          align="left"
+          render={(text) => {
+            return <div>{text}</div>;
+          }}
         />
         <Column
           title="Price(USD)"
-          dataIndex="priceusd"
-          key="amount"
+          dataIndex={displayWidth < 1280 ? `price` : "price"}
+          align="center"
+          width={displayWidth < 1280 && displayWidth > 767 ? `20%` : `15%`}
+          key="price"
+        />
+        <Column
+          title="Balance"
+          dataIndex={"balance"}
+          align="center"
+          width={displayWidth < 1280 && displayWidth > 767 ? `20%` : `15%`}
+          key="date"
+        />
+        <Column
+          title="Value (USD)"
+          dataIndex="usdValue"
+          key="usdValue"
           align="center"
           className="text-green"
         />
