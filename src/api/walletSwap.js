@@ -1,10 +1,16 @@
 import { TezosToolkit } from "@taquito/taquito";
-import { estimateSwap } from "@quipuswap/sdk";
+import { estimateSwap, findDex } from "@quipuswap/sdk";
 
 export class WalletSwap {
   factories = {
-    fa1_2Factory: "KT1WkKiDSsDttdWrfZgcQ6Z9e3Cp4unHP2CP",
-    fa2Factory: "KT1Bps1VtszT2T3Yvxm5PJ6Rx2nk1FykWPdU",
+    fa1_2Factory: [
+      "KT1FWHLMk5tHbwuSsp31S4Jum4dTVmkXpfJw",
+      "KT1Lw8hCoaBrHeTeMXbqHPG4sS4K1xn7yKcD",
+    ],
+    fa2Factory: [
+      "KT1PvEyN1xCFCgorN92QCfYjw3axS6jawCiJ",
+      "KT1SwH9P1Tx8a58Mm6qBExQFTcy2rwZyZiXS",
+    ],
   };
   constructor() {
     const tezos = new TezosToolkit("https://mainnet-node.madfish.solutions");
@@ -14,16 +20,18 @@ export class WalletSwap {
   async getEstimation(amount) {
     const fromAsset = "tez";
     const toAsset = {
-      contract: "KT1RX7AdYr9hFZPQTZw5Fu8KkMwVtobHpTp6",
+      contract: "KT1RsfuBee5o7GtYrdB7bzQ1M6oVgyBnxY4S",
       id: 0,
     };
-    const estimatedOutputValue = await estimateSwap(
-      this.tezos,
-      this.factories,
-      fromAsset,
-      toAsset,
-      { amount: amount }
-    );
-    console.log(estimatedOutputValue);
+    const dex = await findDex(this.tezos, this.factories, toAsset);
+    console.log("gg", dex);
+    // const estimatedOutputValue = await estimateSwap(
+    //   this.tezos,
+    //   this.factories,
+    //   fromAsset,
+    //   toAsset,
+    //   { amount: amount }
+    // );
+    // console.log(estimatedOutputValue);
   }
 }

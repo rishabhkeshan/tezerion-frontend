@@ -10,11 +10,13 @@ export class InternalWalletApi {
     portfolioValue: 0,
     tokens: [
       {
+        number: 1,
         symbol: "XTZ",
         balance: 0,
         price: 0,
         usdValue: 0,
         contractAddress: "",
+        tvl: 0,
       },
     ],
   };
@@ -52,18 +54,22 @@ export class InternalWalletApi {
     );
     let balances = res.data.balances;
     const tokens = await this.getTokensPrices().then((tokens) => {
+      let counter = 1;
       tokens.forEach((token) => {
         let tokenBalance = balances.find(
           (balance) => balance.contract === token.address
         );
         if (tokenBalance) {
           this.data.tokens.push({
+            number: counter + 1,
             symbol: token.symbol,
             balance: tokenBalance.balance,
-            price: token.currentPrice,
+            price: token.usdValue,
             usdValue: token.currentPrice * tokenBalance.balance,
             contractAddress: token.address,
+            tvl: token.pairs.find((pair) => pair.dex === "Quipuswap").tvl,
           });
+          counter++;
         }
       });
       console.log("yolo", this.data);
