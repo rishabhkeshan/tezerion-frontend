@@ -23,7 +23,7 @@ function OtherAssetsTableContainer({ tokenData }) {
       <Table data={tokenData.tokens} pagination={false} scroll={{ y: 280 }}>
         <Column
           title="Sr.No"
-          dataIndex="contractAddress"
+          dataIndex="number"
           key="sr_no"
           width={displayWidth < 768 ? `15%` : `10%`}
           align="center"

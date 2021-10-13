@@ -48,32 +48,31 @@ function AssetsScreen() {
             >
               {tokenData?.tokens
                 ? tokenData.tokens.map((token, i) => {
-                    return (
-                      <option
-                        value={i}
-                      >{`${token.symbol}`}</option>
-                    );
+                    return <option value={i}>{`${token.symbol}`}</option>;
                   })
                 : null}
             </select>
           </div>
-          <div className="assetsscreen_maincontainer_innercontainer">
-            <div className="assetsscreen_maincontainer_topcontainer">
-              <TokenPriceGraphContainer
-                tokenData={tokenData}
-                tokenDisplayID={tokenDisplayID}
-              />
-              <TokenDetailsContainer
-                tokenSelectedData={tokenData.tokens[tokenDisplayID]}
-              />
+          {tokenData.tokens ? (
+            <div className="assetsscreen_maincontainer_innercontainer">
+              <div className="assetsscreen_maincontainer_topcontainer">
+                <TokenPriceGraphContainer
+                  tokenData={tokenData}
+                  tokenDisplayID={tokenDisplayID}
+                />
+                {tokenData?.tokens[tokenDisplayID]?<TokenDetailsContainer
+                  tokenSelectedData={tokenData?.tokens[tokenDisplayID]}
+                />:null}
+
+              </div>
+              <div className="assetsscreen_maincontainer_bottomcontainer">
+                <OtherAssetsTableContainer
+                  tokenData={tokenData}
+                  tokenDisplayID={tokenDisplayID}
+                />
+              </div>
             </div>
-            <div className="assetsscreen_maincontainer_bottomcontainer">
-              <OtherAssetsTableContainer
-                tokenData={tokenData}
-                tokenDisplayID={tokenDisplayID}
-              />
-            </div>
-          </div>
+          ) : null}
         </section>
         <Footer />
       </article>

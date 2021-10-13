@@ -29,48 +29,48 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               {tokenSelectedData.symbol}
             </div>
           </div>
-          <div className="tokendetailscontainer_innercontainer_detailbox">
-            <div className="tokendetailscontainer_innercontainer_detailbox_key">
-              USD Value
+          <div className="tokendetailscontainer_innercontainer_detailbox flex flex-col justify-start items-end">
+            <div className="tokendetailscontainer_innercontainer_detailbox_key ">
+              Contract Address
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {project.tokenTicker}
+              {tokenSelectedData.contractAddress}
             </div>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="tokendetailscontainer_innercontainer_detailbox">
             <div className="tokendetailscontainer_innercontainer_detailbox_key">
-              Token Name
+              Price (USD)
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.symbol}
+              {tokenSelectedData.price}
             </div>
           </div>
-          <div className="tokendetailscontainer_innercontainer_detailbox">
-            <div className="tokendetailscontainer_innercontainer_detailbox_key">
-              USD Value
+          <div className="tokendetailscontainer_innercontainer_detailbox flex flex-col justify-start items-end">
+            <div className="tokendetailscontainer_innercontainer_detailbox_key ">
+              TVL
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {project.tokenTicker}
+              {tokenSelectedData.tvl}
             </div>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="tokendetailscontainer_innercontainer_detailbox">
             <div className="tokendetailscontainer_innercontainer_detailbox_key">
-              Token Name
+              Balance
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.symbol}
+              {tokenSelectedData.balance}
             </div>
           </div>
-          <div className="tokendetailscontainer_innercontainer_detailbox">
+          <div className="tokendetailscontainer_innercontainer_detailbox flex flex-col justify-start items-end">
             <div className="tokendetailscontainer_innercontainer_detailbox_key">
-              USD Value
+              Value(USD)
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {project.tokenTicker}
+              {tokenSelectedData.usdValue}
             </div>
           </div>
         </div>

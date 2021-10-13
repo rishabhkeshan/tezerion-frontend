@@ -59,9 +59,12 @@ function HomeScreen() {
             Want to swap tokens?
           </div>
           <div className="homescreen_maincontainer_swapcontainer_button">
-            <div className="homescreen_maincontainer_swapcontainer_button_text">
-              Click Here
-            </div>
+              <Link
+                to="/swap"
+                className="homescreen_maincontainer_swapcontainer_button_text"
+              >
+                Click Here
+              </Link>
             <img
               className="homescreen_maincontainer_swapcontainer_button_icon"
               src={NextIcon}
