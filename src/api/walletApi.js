@@ -57,7 +57,7 @@ export class InternalWalletApi {
       let counter = 1;
       tokens.forEach((token) => {
         let tokenBalance = balances.find(
-          (balance) => balance.contract === token.address
+          (balance) => balance.contract === token.tokenAddress
         );
         if (tokenBalance) {
           this.data.tokens.push({
@@ -72,7 +72,6 @@ export class InternalWalletApi {
           counter++;
         }
       });
-      console.log("yolo", this.data);
       return this.data;
     });
     return tokens;
