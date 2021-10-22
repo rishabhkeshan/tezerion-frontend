@@ -69,6 +69,7 @@ export class InternalWalletApi {
             contractAddress: token.address,
             tvl: token.pairs.find((pair) => pair.dex === "Quipuswap").tvl,
           });
+          this.data.portfolioValue += token.currentPrice * tokenBalance.balance;
           counter++;
         }
       });
