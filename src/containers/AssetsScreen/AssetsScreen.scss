@@ -9,7 +9,7 @@
     &_detailbox {
       @apply py-3;
       &_key {
-        @apply text-primary-purple-100 opacity-50 pb-1 text-caption-4 leading-caption-4 tablet:text-caption-3 tablet:leading-caption-3 desktop:text-caption-2 desktop:leading-caption-2 font-semibold;
+        @apply text-primary-purple-100 opacity-50 pb-1 text-caption-4 leading-caption-4 tablet:text-caption-3 tablet:leading-caption-3 desktop:text-caption-1 desktop:leading-caption-1 font-semibold;
       }
       &_value {
         @apply text-primary-purple-100 opacity-90 font-medium text-caption-4 leading-caption-4 tablet:text-caption-2 tablet:leading-caption-2 desktop:text-caption-1 desktop:leading-caption-1;
@@ -73,7 +73,7 @@
     @apply rounded-md;
   }
   .rc-table-cell {
-    @apply text-primary-purple-100 text-xs tablet:text-sm xl:text-base font-light tablet:font-medium xl:font-semibold;
+    @apply text-primary-purple-100 text-caption-4 tablet:text-caption-2 font-light tablet:font-medium xl:font-semibold;
   }
   .rc-table-thead {
     th {
@@ -85,6 +85,23 @@
     }
   }
   .rc-table-tbody {
+      ::-webkit-scrollbar:vertical {
+    @apply w-1.5 bg-dark-200;
+  }
+  ::-webkit-scrollbar:horizontal {
+    @apply h-1.5 bg-dark-200;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+    background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
+    @apply rounded-md h-16 bg-opacity-50;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
+    @apply rounded-md w-16 bg-opacity-50;
+  }
+  ::-webkit-scrollbar-track {
+    @apply rounded-md;
+  }
     tr {
       td {
         @apply text-primary-purple-100 bg-transparent border-b border-dark-200;

@@ -16,6 +16,16 @@ function OtherAssetsTableContainer({ tokenData }) {
   useEffect(() => {
     setDisplayWidth(size.width);
   }, [size]);
+
+  function abbreviateNumber(number) {
+   let x = new BigNumber(number);
+   x=x.toPrecision(5);
+   x = new BigNumber(x);
+    if(x>100000)
+   return x.toExponential();
+   else
+   return x.toNumber();
+  }
   return (
     <section className="otherassetstablecontainer">
       <div className="otherassetstablecontainer_title">All Assets</div>
@@ -31,6 +41,7 @@ function OtherAssetsTableContainer({ tokenData }) {
             return <div>{text}</div>;
           }}
         />
+
         <Column
           title="Symbol"
           dataIndex="symbol"
@@ -48,11 +59,30 @@ function OtherAssetsTableContainer({ tokenData }) {
           }}
         />
         <Column
+          title="Address"
+          dataIndex="contractAddress"
+          key="contractAddress"
+          width={
+            displayWidth < 1280 && displayWidth > 767
+              ? `20%`
+              : displayWidth < 768
+              ? "20%"
+              : `20%`
+          }
+          align="left"
+          render={(text) => {
+            return <div>{`${text.substr(0, 6)}...${text.substr(-4)}`}</div>;
+          }}
+        />
+        <Column
           title="Price(USD)"
           dataIndex={displayWidth < 1280 ? `price` : "price"}
           align="center"
           width={displayWidth < 1280 && displayWidth > 767 ? `20%` : `15%`}
           key="price"
+          render={(text) => {
+            return <div>{abbreviateNumber(text)}</div>;
+          }}
         />
         <Column
           title="Balance"
@@ -60,6 +90,9 @@ function OtherAssetsTableContainer({ tokenData }) {
           align="center"
           width={displayWidth < 1280 && displayWidth > 767 ? `20%` : `15%`}
           key="date"
+          render={(text) => {
+            return <div>{abbreviateNumber(text)}</div>;
+          }}
         />
         <Column
           title="Value (USD)"
@@ -67,6 +100,9 @@ function OtherAssetsTableContainer({ tokenData }) {
           key="usdValue"
           align="center"
           className="text-green"
+          render={(text) => {
+            return <div>{abbreviateNumber(text)}</div>;
+          }}
         />
       </Table>
     </section>

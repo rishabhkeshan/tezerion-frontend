@@ -18,7 +18,11 @@
         @apply bg-transparent border mt-2 border-primary-purple-200 rounded-lg w-24 px-1.5 py-1 outline-none text-white text-paragraph-1;
       }
       &_tokensdropdown{
-        @apply bg-transparent outline-none border px-2 rounded-xl border-primary-purple-200 w-40 text-purple-300 h-14;
+        @apply bg-dark-300 outline-none border px-2 rounded-xl border-primary-purple-200 w-40 text-purple-300 h-14;
+        background: radial-gradient(148.85% 148.08% at 54.24% -39.42%, #3D3D7E 11.98%, #1D1D34 100%);
+        option{
+          background: radial-gradient(148.85% 148.08% at 54.24% -39.42%, #3D3D7E 11.98%, #1D1D34 100%);
+        }
       }
       &_left{
         @apply w-5/12 flex px-6 py-4 rounded-xl justify-between items-center; 

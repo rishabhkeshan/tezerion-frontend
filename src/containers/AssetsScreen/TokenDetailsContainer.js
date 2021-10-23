@@ -2,6 +2,7 @@ import "./AssetsScreen.scss";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import BigNumber from "bignumber.js";
 
 function TokenDetailsContainer({ tokenSelectedData }) {
   // useEffect(() => {
@@ -14,7 +15,13 @@ function TokenDetailsContainer({ tokenSelectedData }) {
     contractAddress: "40 ꜩ",
     projectDescription: "4000 ꜩ",
   });
-
+  function abbreviateNumber(number) {
+    let x = new BigNumber(number);
+    x = x.toPrecision(8);
+    x = new BigNumber(x);
+    if (x > 1000000) return x.toExponential();
+    else return x.toNumber();
+  }
   return (
     <section className="tokendetailscontainer">
       <div className="tokendetailscontainer_title">DETAILS</div>
@@ -34,7 +41,10 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               Contract Address
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.contractAddress}
+              {`${tokenSelectedData.contractAddress.substr(
+                0,
+                6
+              )}...${tokenSelectedData.contractAddress.substr(-4)}`}
             </div>
           </div>
         </div>
@@ -44,7 +54,7 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               Price (USD)
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.price}
+              {abbreviateNumber(tokenSelectedData.price)}
             </div>
           </div>
           <div className="tokendetailscontainer_innercontainer_detailbox flex flex-col justify-start items-end">
@@ -52,7 +62,7 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               TVL
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.tvl}
+              {abbreviateNumber(tokenSelectedData.tvl)}
             </div>
           </div>
         </div>
@@ -62,7 +72,7 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               Balance
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.balance}
+              {abbreviateNumber(tokenSelectedData.balance)}
             </div>
           </div>
           <div className="tokendetailscontainer_innercontainer_detailbox flex flex-col justify-start items-end">
@@ -70,7 +80,7 @@ function TokenDetailsContainer({ tokenSelectedData }) {
               Value(USD)
             </div>
             <div className="tokendetailscontainer_innercontainer_detailbox_value">
-              {tokenSelectedData.usdValue}
+              {abbreviateNumber(tokenSelectedData.usdValue)}
             </div>
           </div>
         </div>

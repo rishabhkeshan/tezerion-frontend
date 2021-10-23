@@ -14,6 +14,7 @@ function SwapScreen() {
   const [projectData, setProjectData] = useState([]);
   const [projectOverviewData, setProjectOverviewData] = useState(null);
   const [allProjectData, setAllProjectData] = useState([]);
+  const tokens=["XTZ","KALAM"];
   useEffect(() => {
     
   }, []);
@@ -60,11 +61,11 @@ function SwapScreen() {
                   setProjectDisplayID(event.target.value);
                 }}
               >
-                <option value="" disabled selected hidden>
-                  Select Token
-                </option>
-                <option>XTZ</option>
-                <option>Kalam</option>
+                {tokens
+                  ? tokens.map((token, i) => {
+                      return <option value={i}>{`${token}`}</option>;
+                    })
+                  : null}
               </select>
             </div>
             <div className="swapscreen_maincontainer_tokencontainer_right">
@@ -84,18 +85,18 @@ function SwapScreen() {
                   setProjectDisplayID(event.target.value);
                 }}
               >
-                <option value="" disabled selected hidden>
-                  Select Token
-                </option>
-                <option>XTZ</option>
-                <option>Kalam</option>
+                {tokens
+                  ? tokens.map((token, i) => {
+                      return <option value={i}>{`${token}`}</option>;
+                    })
+                  : null}
               </select>
             </div>
           </div>
 
           <div className="swapscreen_maincontainer_innercontainer">
             <div className="swapscreen_maincontainer_innercontainer_left">
-              <div>Input Dex Contract</div>
+              <div>Input Dex Contract </div>
               <div>Output Dex Contract</div>
               <div>Fee - 0.3%</div>
               <div>Exchange Rate</div>

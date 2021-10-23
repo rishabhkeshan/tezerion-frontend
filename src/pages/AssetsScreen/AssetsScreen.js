@@ -15,8 +15,8 @@ import { InternalWalletApi } from "../../api/walletApi";
 
 function AssetsScreen() {
   const internalWalletApi = new InternalWalletApi(
-    "tz1gcBJ67BBdCxeekyzwjSNf4ovgjyDBStuc",
-    "granadanet"
+    "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+    "mainnet"
   );
 
   const [tokenDisplayID, setTokenDisplayID] = useState(0);
