@@ -1,0 +1,48 @@
+.aboutscreen {
+  @apply h-screen bg-dark-400 flex;
+
+  &_maincontainer {
+    @apply flex flex-col justify-center items-start m-auto;
+    &_herocontainer {
+      @apply px-8 py-8 tablet:pl-16 tablet:pr-12 tablet:-ml-12 laptop:ml-0 tablet:py-16 desktop:py-8 rounded-lg tablet:rounded-2xl desktop:rounded-4xl text-white relative w-80v tablet:w-70v laptop:w-62v flex flex-col items-center tablet:items-start;
+      background: radial-gradient(
+        148.85% 148.08% at 54.24% -39.42%,
+        #3d3d7e 11.98%,
+        #1d1d34 100%
+      );
+      max-width: 960px;
+      &_cname {
+        @apply flex rounded-lg object-contain w-fit-content px-3 mb-4 py-2.5 text-subheading;
+        background: radial-gradient(
+          143.33% 143.33% at 82.41% -4.96%,
+          rgba(170, 132, 214, 0.3) 0%,
+          rgba(18, 28, 32, 0.3) 100%
+        );
+      }
+      &_title {
+        @apply font-semibold text-lg  tablet:text-xl laptop:text-2xl w-10/12 tablet:w-11/12 text-center tablet:text-left;
+      }
+      &_subtitle {
+        @apply py-1 desktop:pt-4 desktop:pb-8 text-caption-1 text-center tablet:text-left;
+      }
+      &_button {
+        @apply rounded-xl flex px-3 py-2 tablet:px-5 tablet:py-3 tablet:mb-16 laptop:mb-0 laptop:px-6 laptop:py-5 items-center justify-center text-center w-fit-content cursor-pointer;
+        background: linear-gradient(
+          180deg,
+          #a58cff 0%,
+          #8162f4 33.91%,
+          #4c31b2 113.01%
+        );
+        &_text {
+          @apply mr-3 text-caption-3 leading-caption-3 tablet:text-caption-1 tablet:leading-caption-1 desktop:text-paragraph-1 desktop:leading-paragraph-1 font-medium;
+        }
+        &_icon {
+          @apply w-5;
+        }
+      }
+      &_blobglowcube {
+        @apply hidden tablet:flex w-16 desktop:w-24 absolute bottom-4 right-4;
+      }
+    }
+  }
+}

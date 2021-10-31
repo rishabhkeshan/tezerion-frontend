@@ -32,7 +32,7 @@ function AssetsScreen() {
   return (
     <>
       <article className="assetsscreen">
-        <Header />
+        <Header about swap/>
         <section className="assetsscreen_maincontainer">
           <div className="assetsscreen_maincontainer_titlecontainer">
             <div className="assetsscreen_maincontainer_titlecontainer_title">

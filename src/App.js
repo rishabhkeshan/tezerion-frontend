@@ -5,6 +5,7 @@ import AssetsScreen from "./pages/AssetsScreen/AssetsScreen";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./containers/LoadingScreen";
 import SwapScreen from "./pages/SwapScreen/SwapScreen";
+import AboutScreen from "./pages/AboutScreen/AboutScreen";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,11 @@ function App() {
               exact
               path="/swap"
               component={SwapScreen}
+            />
+            <Route
+              exact
+              path="/about"
+              component={AboutScreen}
             />
           </Switch>
         </Router>

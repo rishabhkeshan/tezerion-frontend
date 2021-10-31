@@ -22,7 +22,7 @@ function SwapScreen() {
   return (
     <>
       <article className="swapscreen">
-        <Header />
+        <Header assets about/>
         <section className="swapscreen_maincontainer">
           <div className="swapscreen_maincontainer_titlecontainer">
             <div className="swapscreen_maincontainer_titlecontainer_title">

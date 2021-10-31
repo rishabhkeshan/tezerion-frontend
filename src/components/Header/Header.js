@@ -7,9 +7,10 @@ import { useMetamask } from "../../metamaskReactHook/index";
 import { useEffect, useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
+import { Link } from "react-router-dom";
 
 const Tezos = new TezosToolkit("https://testnet-tezos.giganode.io");
-function Header({ hiddenNav }) {
+function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const options = {
@@ -82,36 +83,63 @@ function Header({ hiddenNav }) {
       </a>
       {!hiddenNav && (
         <div className="header_navbar">
-          { (
+          {
             <>
               {" "}
-              <div className="header_navbar_text">Swap</div>
-              <div className="header_navbar_gap"></div>
+              {swap ? (
+                <>
+                  {" "}
+                  <Link to="/swap" className="header_navbar_text">
+                    Swap
+                  </Link>
+                  <div className="header_navbar_gap"></div>
+                </>
+              ) : null}
+              {assets ? (
+                <>
+                  {" "}
+                  <Link to="/assets" className="header_navbar_text">
+                    Assets
+                  </Link>
+                  <div className="header_navbar_gap"></div>
+                </>
+              ) : null}
+              {about ? (
+                <>
+                  {" "}
+                  <Link to="/about" className="header_navbar_text">
+                    About
+                  </Link>
+                  <div className="header_navbar_gap"></div>
+                </>
+              ) : null}
             </>
-          )}
-          {userAddress ? (
-            <div className="header_navbar_logoutbutton">
-              <div className="header_navbar_logoutbutton_text">
-                {" "}
-                {`${userAddress.substr(0, 6)}...${userAddress.substr(-4)}`}
+          }
+          {!hiddenConnect ? (
+            userAddress ? (
+              <div className="header_navbar_logoutbutton">
+                <div className="header_navbar_logoutbutton_text">
+                  {" "}
+                  {`${userAddress.substr(0, 6)}...${userAddress.substr(-4)}`}
+                </div>
+                <img
+                  className="header_navbar_logoutbutton_icon"
+                  onClick={console.log("Hello")}
+                  src={LogoutIcon}
+                  alt="logout icon"
+                />
               </div>
-              <img
-                className="header_navbar_logoutbutton_icon"
-                onClick={console.log("Hello")}
-                src={LogoutIcon}
-                alt="logout icon"
-              />
-            </div>
-          ) : (
-            <div className="header_navbar_button">
-              <div
-                onClick={connectWallet}
-                className="header_navbar_button_text"
-              >
-                Connect Wallet
+            ) : (
+              <div className="header_navbar_button">
+                <div
+                  onClick={connectWallet}
+                  className="header_navbar_button_text"
+                >
+                  Connect Wallet
+                </div>
               </div>
-            </div>
-          )}
+            )
+          ) : null}
         </div>
       )}{" "}
     </header>
