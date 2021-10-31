@@ -115,7 +115,6 @@ function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
               ) : null}
             </>
           }
-<<<<<<< HEAD
           {!hiddenConnect ? (
             userAddress ? (
               <div className="header_navbar_logoutbutton">
@@ -129,13 +128,6 @@ function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
                   src={LogoutIcon}
                   alt="logout icon"
                 />
-=======
-          {userAddress ? (
-            <div className="header_navbar_logoutbutton">
-              <div className="header_navbar_logoutbutton_text">
-                {" "}
-                {`${userAddress.substr(0, 6)}...${userAddress.substr(-4)}`}
->>>>>>> feat: swap integration in qwipuswap
               </div>
             ) : (
               <div className="header_navbar_button">

@@ -10,8 +10,6 @@ import { InternalWalletApi } from "../../api/walletApi";
 import { WalletSwap } from "../../api/walletSwap";
 
 function HomeScreen() {
-<<<<<<< HEAD
-=======
   // const internalWalletApi = new InternalWalletApi(
   //   "tz1YtADQDGF7EYc45aUR4ftMRCL3rgXkqwDK",
   //   "mainnet"
@@ -23,9 +21,8 @@ function HomeScreen() {
   // })();
 
   //Uncomment these both lines to test Wallet
-  const walletSwapApi = new WalletSwap();
-  walletSwapApi.getEstimation(100, "Kolibri");
->>>>>>> feat: swap integration in qwipuswap
+  // const walletSwapApi = new WalletSwap();
+  // walletSwapApi.getEstimation(100, "Kolibri");
   return (
     <article className="homescreen">
       <Header hiddenConnect about />
@@ -64,12 +61,12 @@ function HomeScreen() {
             Want to swap tokens?
           </div>
           <div className="homescreen_maincontainer_swapcontainer_button">
-              <Link
-                to="/swap"
-                className="homescreen_maincontainer_swapcontainer_button_text"
-              >
-                Click Here
-              </Link>
+            <Link
+              to="/swap"
+              className="homescreen_maincontainer_swapcontainer_button_text"
+            >
+              Click Here
+            </Link>
             <img
               className="homescreen_maincontainer_swapcontainer_button_icon"
               src={NextIcon}
