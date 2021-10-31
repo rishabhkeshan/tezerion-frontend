@@ -6,8 +6,14 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-function HomeScreen() {
+import { InternalWalletApi } from "../../api/walletApi";
 
+function HomeScreen() {
+  const internalWalletApi = new InternalWalletApi(
+    "tz1gcBJ67BBdCxeekyzwjSNf4ovgjyDBStuc",
+    "granadanet"
+  );
+  internalWalletApi.getWalletTokens();
   return (
     <article className="homescreen">
       <Header hiddenNav={true} />
