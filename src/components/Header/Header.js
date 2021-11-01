@@ -9,8 +9,14 @@ import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { Link } from "react-router-dom";
 
-const Tezos = new TezosToolkit("https://testnet-tezos.giganode.io");
-function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
+function Header({
+  hiddenNav,
+  assets,
+  swap,
+  about,
+  hiddenConnect,
+  handleWalletConnection,
+}) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const options = {
@@ -39,36 +45,18 @@ function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
       },
     },
   };
-  const [wallet, setWallet] = useState(new BeaconWallet(options));
-  const [userAddress, setUserAddress] = useState(null);
-  const [userBalance, setUserBalance] = useState(null);
-  const [beaconConnection, setBeaconConnection] = useState(null);
 
-  const setup = async (userAddress) => {
-    setUserAddress(userAddress);
-    Tezos.setWalletProvider(wallet);
-    // updates balance
-    console.log(userAddress);
-    const balance = await Tezos.tz.getBalance(userAddress);
-    setUserBalance(balance.toNumber());
-    console.log(balance.toNumber());
-  };
+  const [userAddress, setUserAddress] = useState(null);
 
   const connectWallet = async () => {
-    try {
-      const activeAccount = await wallet.client.getActiveAccount();
-      if (activeAccount) {
-        Tezos.setWalletProvider(wallet);
-        setUserAddress(activeAccount.address);
-      }
-      await wallet.requestPermissions({ network: { type: "granadanet" } });
-      // gets user's address
-      const userAddress = await wallet.getPKH();
-      await setup(userAddress);
-      setBeaconConnection(true);
-    } catch (error) {
-      console.log(error);
-    }
+    const Tezos = new TezosToolkit("https://granadanet.smartpy.io/");
+    const options = { name: "Tezerion" };
+    const wallet = new BeaconWallet(options);
+    await wallet.requestPermissions({ network: { type: "granadanet" } });
+    const pkh = await wallet.getPKH();
+    setUserAddress(pkh);
+    Tezos.setWalletProvider(wallet);
+    handleWalletConnection(Tezos, pkh);
   };
   return (
     <header className={`header z-40 ${"border-b border-dark-200 "}`}>

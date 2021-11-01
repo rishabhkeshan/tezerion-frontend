@@ -14,7 +14,7 @@ import OtherAssetsTableContainer from "../../containers/AssetsScreen/OtherAssets
 import { InternalWalletApi } from "../../api/walletApi";
 
 function AssetsScreen() {
-  const internalWalletApi = new InternalWalletApi(
+  let internalWalletApi = new InternalWalletApi(
     "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
     "mainnet"
   );
@@ -29,10 +29,15 @@ function AssetsScreen() {
     console.log(accountDetails);
     setTokenData(accountDetails);
   };
+
+  const handleWalletConnection = (tezos, pkh) => {
+    internalWalletApi = new InternalWalletApi(pkh, "mainnet");
+    loadTokenData();
+  };
   return (
     <>
       <article className="assetsscreen">
-        <Header about swap/>
+        <Header about swap handleWalletConnection={handleWalletConnection} />
         <section className="assetsscreen_maincontainer">
           <div className="assetsscreen_maincontainer_titlecontainer">
             <div className="assetsscreen_maincontainer_titlecontainer_title">
@@ -60,10 +65,11 @@ function AssetsScreen() {
                   tokenData={tokenData}
                   tokenDisplayID={tokenDisplayID}
                 />
-                {tokenData?.tokens[tokenDisplayID]?<TokenDetailsContainer
-                  tokenSelectedData={tokenData?.tokens[tokenDisplayID]}
-                />:null}
-
+                {tokenData?.tokens[tokenDisplayID] ? (
+                  <TokenDetailsContainer
+                    tokenSelectedData={tokenData?.tokens[tokenDisplayID]}
+                  />
+                ) : null}
               </div>
               <div className="assetsscreen_maincontainer_bottomcontainer">
                 <OtherAssetsTableContainer

@@ -1,12 +1,7 @@
 import "./SwapScreen.scss";
 
-import NextIcon from "../../assets/next.svg";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { Link } from "react-router-dom";
-import Redirect from "../../assets/Redirect.svg";
-
-import BigNumber from "bignumber.js";
 import { useEffect, useState } from "react";
 import { WalletSwap } from "../../api/walletSwap";
 import { useSnackbar } from "notistack";
@@ -19,12 +14,20 @@ function SwapScreen() {
   const [inputContract, setInputContract] = useState("");
   const [outputContract, setOutputContract] = useState("Kolibri");
   const [inputDex, setInputDex] = useState("");
+  const [pkh, setPkh] = useState("");
+  const [tezos, setTezos] = useState(null);
   const [outputDex, setOutputDex] = useState(
     walletSwapApi.getTokenContract("Kolibri").contract
   );
   const [inputAmount, setInputAmount] = useState("");
 
   useEffect(() => {}, []);
+
+  const handleWalletConnection = (tezos, pkh) => {
+    setTezos(tezos);
+    setPkh(pkh);
+    walletSwapApi.setTezos(tezos, pkh);
+  };
 
   const successToast = (message) => {
     enqueueSnackbar(message, {
@@ -53,7 +56,13 @@ function SwapScreen() {
   };
 
   const swapToken = async () => {
-    const results = await walletSwapApi.swapTokens(inputAmount, outputContract);
+    console.log(tezos, pkh);
+    const results = await walletSwapApi.swapTokens(
+      inputAmount,
+      outputContract,
+      tezos,
+      pkh
+    );
     console.log(results);
     if (results.swapped) {
       successToast("Swap Successful");
@@ -75,7 +84,7 @@ function SwapScreen() {
   return (
     <>
       <article className="swapscreen">
-        <Header assets about />
+        <Header assets about handleWalletConnection={handleWalletConnection} />
         <section className="swapscreen_maincontainer">
           <div className="swapscreen_maincontainer_titlecontainer">
             <div className="swapscreen_maincontainer_titlecontainer_title">
@@ -153,9 +162,7 @@ function SwapScreen() {
             <div className="swapscreen_maincontainer_innercontainer_left">
               <div className="flex justify-between">
                 <div>Input Dex Contract</div>
-                <div>
-                  {inputDex}
-                </div>
+                <div>{inputDex}</div>
               </div>
               <div className="flex justify-between">
                 <div>Output Dex Contract</div>
@@ -176,6 +183,11 @@ function SwapScreen() {
                 {" "}
                 <div>Slippage Tolerance</div>
                 <div>0.05%</div>
+              </div>
+              <div className="flex justify-between">
+                {" "}
+                <div>Your PKH</div>
+                <div>{pkh}</div>
               </div>
             </div>
             <div className="swapscreen_maincontainer_innercontainer_right">

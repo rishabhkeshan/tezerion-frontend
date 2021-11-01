@@ -1,6 +1,20 @@
-import { TezosToolkit } from "@taquito/taquito";
-import { estimateSwap, findDex, swap, batchify } from "@quipuswap/sdk";
+import { TezosToolkit,  } from "@taquito/taquito";
+import { estimateSwap,  swap, batchify } from "@quipuswap/sdk";
 import { BigNumber } from "bignumber.js";
+
+class ApunKaSigner {
+  constructor(publicKeyHash, publicKey) {
+    this.pkh = publicKeyHash;
+    this.publicKey = publicKey;
+  }
+  async publicKeyHash() {
+    return this.pkh;
+  }
+
+  async publicKey() {
+    return this.publicKey;
+  }
+}
 
 export class WalletSwap {
   contracts = [
@@ -38,9 +52,17 @@ export class WalletSwap {
     swapped: false,
   };
 
-  constructor() {
-    const tezos = new TezosToolkit("https://granadanet.smartpy.io/");
+  constructor(tezos) {
+    if (tezos) {
+      this.setTezos(tezos);
+    }
+    const tezosLocal = new TezosToolkit("https://granadanet.smartpy.io/");
+    this.tezos = tezosLocal;
+  }
+
+  setTezos(tezos, pkh) {
     this.tezos = tezos;
+    this.tezos.setSignerProvider(new ApunKaSigner(pkh, ""));
   }
 
   getTokenContract(symbol) {
@@ -68,28 +90,29 @@ export class WalletSwap {
     return this.data;
   }
 
-  async swapTokens(amount, contract, slippageTolerence) {
+  async swapTokens(amount, contract, tezos, pkh) {
     try {
       const fromAsset = "tez";
       const toAsset = this.getTokenContract(contract);
       const inputValue = amount;
-      const slippageTolerance = slippageTolerence ?? 0.005; // 0.5%
+      const slippageTolerance = 0.005; // 0.5%
 
+      tezos.setSignerProvider(new ApunKaSigner(pkh, ""));
       const swapParams = await swap(
-        this.tezos,
-        this.factories,
+        tezos,
+        this.granadaFactories,
         fromAsset,
         toAsset,
         inputValue,
         slippageTolerance
       );
 
-      const op = await batchify(this.tezos.wallet.batch([]), swapParams).send();
+      const op = await batchify(tezos.wallet.batch([]), swapParams).send();
 
-      console.info(op.hash);
+      console.info(op);
       await op.confirmation();
       console.info("Complete");
-      this.data.hash = op.hash;
+      this.data.hash = op.opHash;
       this.data.swapped = true;
       return this.data;
     } catch (err) {

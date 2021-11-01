@@ -10,19 +10,6 @@ import { InternalWalletApi } from "../../api/walletApi";
 import { WalletSwap } from "../../api/walletSwap";
 
 function HomeScreen() {
-  // const internalWalletApi = new InternalWalletApi(
-  //   "tz1YtADQDGF7EYc45aUR4ftMRCL3rgXkqwDK",
-  //   "mainnet"
-  // );
-
-  // (async () => {
-  //   let res = await internalWalletApi.getWalletTokens();
-  //   console.log("lmfao", res);
-  // })();
-
-  //Uncomment these both lines to test Wallet
-  // const walletSwapApi = new WalletSwap();
-  // walletSwapApi.getEstimation(100, "Kolibri");
   return (
     <article className="homescreen">
       <Header hiddenConnect about />
