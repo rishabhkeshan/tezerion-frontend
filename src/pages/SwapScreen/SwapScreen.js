@@ -9,7 +9,6 @@ import { useSnackbar } from "notistack";
 function SwapScreen() {
   const walletSwapApi = new WalletSwap();
   const { enqueueSnackbar, _ } = useSnackbar();
-
   const [estimation, setEstimation] = useState(0.0);
   const [inputContract, setInputContract] = useState("");
   const [outputContract, setOutputContract] = useState("Kolibri");

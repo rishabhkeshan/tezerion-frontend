@@ -9,9 +9,16 @@ import BigNumber from "bignumber.js";
 const currentDate = new Date();
 let datetime = currentDate.toLocaleString("en-US");
 function TokenPriceGraphContainer({
-  projectOverviewData,
-  projectDisplayID,
+  tokenData,
+  tokenDisplayID,
 }) {
+    function abbreviateNumber(number) {
+      let x = new BigNumber(number);
+      x = x.toPrecision(5);
+      x = new BigNumber(x);
+      if (x > 100000) return x.toExponential();
+      else return x.toNumber();
+    }
   const [TRGraphDetails, setTRGraphDetails] = useState([]);
   const [tokensReleased, setTokensReleased] = useState(0);
   const [chartOption, setChartOption] = useState({
@@ -98,78 +105,6 @@ function TokenPriceGraphContainer({
       },
     },
   });
-  // useEffect(() => {
-  //   displayTokenReleaseGraphDetails();
-  // }, [projectDisplayID, projectOverviewData]);
-  // const displayTokenReleaseGraphDetails = async () => {
-  //   if (projectOverviewData) {
-  //     let currentProject = projectOverviewData[projectDisplayID];
-  //     currentProject = [currentProject]
-  //       .map((project) =>
-  //         project?.derivatives
-  //           .map((derivative, _index) =>
-  //             derivative.holders.map((holder, index) => {
-  //               const unixTime = derivative.unlockTime;
-  //               const date = new Date(unixTime * 1000);
-  //               let unlockDate = date.toLocaleDateString("en-US");
-  //               let unlockDay = date.toLocaleDateString("en-US", {
-  //                 day: "numeric",
-  //               });
-  //               let unlockMonth = date.toLocaleDateString("en-US", {
-  //                 month: "short",
-  //               });
-  //               let unlockYear = date.toLocaleDateString("en-US", {
-  //                 year: "2-digit",
-  //               });
-  //               let displayGraphDate = `${unlockDay} ${unlockMonth}, ${unlockYear}`;
-  //               let numOfTokens = new BigNumber(holder?.tokenAmount)
-  //                 .dividedBy(Math.pow(10, project.projectTokenDecimal))
-  //                 .toNumber();
-
-  //               return {
-  //                 address: holder.address,
-  //                 date: unlockDate,
-  //                 unixDate: date,
-  //                 numOfTokens,
-  //                 amount: numOfTokens
-  //                   .toString()
-  //                   .concat(" ")
-  //                   .concat(project.projectTokenTicker),
-  //                 projectTokenTicker: project.projectTokenTicker,
-  //                 totalSupply: derivative.totalSupply,
-  //                 displayGraphDate,
-  //                 decimal: project.projectTokenDecimal,
-  //               };
-  //             })
-  //           )
-  //           .flat()
-  //       )
-  //       .flat();
-  //     currentProject.sort((a, b) => new Date(a.date) - new Date(b.date));
-  //     let tre = 0;
-  //     currentProject.map((project) => {
-  //       if (currentDate > project.unixDate) {
-  //         tre = tre + project.numOfTokens;
-  //       }
-  //       return tre;
-  //     });
-  //     setTokensReleased(tre);
-  //     let charXAxis = [];
-  //     let charYAxis = [];
-  //     currentProject.forEach((element) => {
-  //       charXAxis.push(element.displayGraphDate);
-  //       charYAxis.push(
-  //         parseInt(element.totalSupply) / 10 ** parseInt(element.decimal)
-  //       );
-  //     });
-  //     setChartOption({
-  //       ...chartOption,
-  //       xAxis: { ...chartOption.xAxis, categories: charXAxis },
-  //       series: [{ data: charYAxis }],
-  //     });
-  //     setTRGraphDetails([...currentProject]);
-  //   }
-  // };
 
   return (
     <section className="tokenpricegraphcontainer">
@@ -179,7 +114,7 @@ function TokenPriceGraphContainer({
         </div>
         <div className="tokenpricegraphcontainer_titlecontainer_tokensreleased">
           <div className="tokenpricegraphcontainer_titlecontainer_tokensreleased_value">
-            {96} {"$"}
+            {abbreviateNumber(tokenData.portfolioValue)} {"$"}
           </div>
           <div className="tokenpricegraphcontainer_titlecontainer_tokensreleased_date">
             {datetime}
