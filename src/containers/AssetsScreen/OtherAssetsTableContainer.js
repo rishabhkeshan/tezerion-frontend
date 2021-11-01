@@ -30,7 +30,7 @@ function OtherAssetsTableContainer({ tokenData }) {
     <section className="otherassetstablecontainer">
       <div className="otherassetstablecontainer_title">All Assets</div>
 
-      <Table data={tokenData.tokens} pagination={false} scroll={{ y: 280 }}>
+      <Table data={tokenData.tokens} pagination={false} scroll={{ y: 250 }}>
         <Column
           title="Sr.No"
           dataIndex="number"
@@ -48,37 +48,46 @@ function OtherAssetsTableContainer({ tokenData }) {
           key="symbol"
           width={
             displayWidth < 1280 && displayWidth > 767
-              ? `20%`
-              : displayWidth < 768
-              ? "25%"
-              : `25%`
-          }
-          align="left"
-          render={(text) => {
-            return <div>{text}</div>;
-          }}
-        />
-        <Column
-          title="Address"
-          dataIndex="contractAddress"
-          key="contractAddress"
-          width={
-            displayWidth < 1280 && displayWidth > 767
-              ? `20%`
+              ? `15%`
               : displayWidth < 768
               ? "20%"
               : `20%`
           }
           align="left"
           render={(text) => {
-            return <div>{`${text.substr(0, 6)}...${text.substr(-4)}`}</div>;
+            return <div>{text}</div>;
           }}
         />
+        {displayWidth > 767 ? (
+          <Column
+            title="Address"
+            dataIndex="contractAddress"
+            key="contractAddress"
+            width={
+              displayWidth < 1280 && displayWidth > 767
+                ? `20%`
+                : displayWidth < 768
+                ? "20%"
+                : `20%`
+            }
+            align="left"
+            render={(text) => {
+              return <div>{`${text.substr(0, 6)}...${text.substr(-4)}`}</div>;
+            }}
+          />
+        ) : null}
+
         <Column
           title="Price(USD)"
           dataIndex={displayWidth < 1280 ? `price` : "price"}
           align="center"
-          width={displayWidth < 1280 && displayWidth > 767 ? `20%` : `15%`}
+          width={
+            displayWidth < 1280 && displayWidth > 767
+              ? `15%`
+              : displayWidth < 768
+              ? "20%"
+              : `15%`
+          }
           key="price"
           render={(text) => {
             return <div>{abbreviateNumber(text)}</div>;

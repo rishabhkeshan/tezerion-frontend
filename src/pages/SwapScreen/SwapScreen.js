@@ -118,7 +118,7 @@ function SwapScreen() {
               <div>
                 <div className="text-white text-subheading pb-2 ">Output</div>
                 <input
-                  className="swapscreen_maincontainer_tokencontainer_input"
+                  className="swapscreen_maincontainer_tokencontainer_output"
                   placeholder={estimation}
                   type="number"
                   disabled={true}
@@ -151,11 +151,32 @@ function SwapScreen() {
 
           <div className="swapscreen_maincontainer_innercontainer">
             <div className="swapscreen_maincontainer_innercontainer_left">
-              <div>Input Dex Contract - {inputDex}</div>
-              <div>Output Dex Contract - {outputDex}</div>
-              <div>Fee - 0.3%</div>
-              <div>Exchange Rate - {estimation}</div>
-              <div>Slippage Tolerance - 0.05%</div>
+              <div className="flex justify-between">
+                <div>Input Dex Contract</div>
+                <div>
+                  {inputDex}
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <div>Output Dex Contract</div>
+                <div>
+                  {outputDex.substr(0, 6)}...{outputDex.substr(-4)}
+                </div>
+              </div>
+              <div className="flex justify-between">
+                {" "}
+                <div>Fee</div>
+                <div>{"0.3%"}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Exchange Rate</div>
+                <div>{estimation}</div>
+              </div>
+              <div className="flex justify-between">
+                {" "}
+                <div>Slippage Tolerance</div>
+                <div>0.05%</div>
+              </div>
             </div>
             <div className="swapscreen_maincontainer_innercontainer_right">
               <div className="flex flex-col justify-end">

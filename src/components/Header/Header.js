@@ -46,12 +46,12 @@ function Header({ hiddenNav, assets, swap, about, hiddenConnect }) {
 
   const setup = async (userAddress) => {
     setUserAddress(userAddress);
+    Tezos.setWalletProvider(wallet);
     // updates balance
     console.log(userAddress);
     const balance = await Tezos.tz.getBalance(userAddress);
     setUserBalance(balance.toNumber());
     console.log(balance.toNumber());
-    Tezos.setWalletProvider(wallet);
   };
 
   const connectWallet = async () => {

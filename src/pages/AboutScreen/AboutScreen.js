@@ -14,7 +14,7 @@ import { WalletSwap } from "../../api/walletSwap";
 function AboutScreen() {
   return (
     <article className="aboutscreen">
-      <Header swap assets hiddenConnect/>
+      <Header swap assets hiddenConnect />
       <section className="aboutscreen_maincontainer">
         <div className="aboutscreen_maincontainer_herocontainer">
           <div className="aboutscreen_maincontainer_herocontainer_cname">
@@ -33,13 +33,21 @@ function AboutScreen() {
           <div className="flex justify-between pt-3">
             <div className="flex flex-col justify-center items-center">
               <img className="w-36 pb-2" src={Rishabh} alt="Rishabh" />
-              <div className="font-bold text-paragraph-1">Rishabh Keshan</div>
-              <div className="text-primary-purple-300">TIF Fellow 2.0</div>
+              <div className="font-bold text-caption-3 tablet:text-caption-1 laptop:text-paragraph-1">
+                Rishabh Keshan
+              </div>
+              <div className="text-primary-purple-300 text-caption-4 tablet:text-caption-2 laptop:text-paragraph-2">
+                TIF Fellow 2.0
+              </div>
             </div>
-            <div className="flex flex-col justify-center ml-16 items-center">
+            <div className="flex flex-col justify-center ml-8 tablet:ml-12 laptop:ml-16 items-center">
               <img className="w-36 pb-2" src={Hemanth} alt="Hemanth" />
-              <div className="font-bold text-paragraph-1">Hemanth Krishna</div>
-              <div className="text-primary-purple-300">TIF Fellow 2.0</div>
+              <div className="font-bold text-caption-3 tablet:text-caption-1 laptop:text-paragraph-1">
+                Hemanth Krishna
+              </div>
+              <div className="text-primary-purple-300 text-caption-4 tablet:text-caption-2 laptop:text-paragraph-2">
+                TIF Fellow 2.0
+              </div>
             </div>
           </div>
           <img

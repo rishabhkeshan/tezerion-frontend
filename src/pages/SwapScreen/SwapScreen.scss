@@ -15,7 +15,10 @@
     &_tokencontainer {
       @apply flex flex-row xl:flex-row justify-between pt-8 items-center;
       &_input{
-        @apply bg-transparent border mt-2 border-primary-purple-200 rounded-lg w-24 px-1.5 py-1 outline-none text-white text-paragraph-1;
+        @apply bg-transparent border mt-2 border-primary-purple-200 rounded-lg w-24 px-1.5 py-1 outline-none text-white text-caption-1;
+      }
+      &_output{
+        @apply bg-transparent mt-2 rounded-lg px-1.5 py-1 outline-none text-white text-caption-1;
       }
       &_tokensdropdown{
         @apply bg-dark-300 outline-none border px-2 rounded-xl border-primary-purple-200 w-40 text-purple-300 h-14;
@@ -45,7 +48,7 @@
         @apply flex flex-col justify-between w-5/12;
       }
       &_swapbutton{
-        @apply px-5 py-3 text-paragraph-2 font-semibold rounded-2xl w-fit-content;
+        @apply px-5 py-3 text-paragraph-2 font-semibold rounded-2xl w-fit-content cursor-pointer;
         background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
       }
       // background: radial-gradient(148.85% 148.08% at 54.24% -39.42%, #3D3D7E 11.98%, #1D1D34 100%);

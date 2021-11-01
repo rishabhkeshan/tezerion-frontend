@@ -55,20 +55,20 @@
 
 .rc-table {
   @apply bg-none pb-6 rounded-b-lg;
-  ::-webkit-scrollbar:vertical {
+  ::-webkit-scrollbar {
     @apply w-1.5 bg-dark-200;
   }
-  ::-webkit-scrollbar:horizontal {
-    @apply h-1.5 bg-dark-200;
-  }
-  ::-webkit-scrollbar-thumb:vertical {
+  // ::-webkit-scrollbar:horizontal {
+  //   @apply h-1.5 bg-dark-200;
+  // }
+  ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
     @apply rounded-md h-16 bg-opacity-50;
   }
-  ::-webkit-scrollbar-thumb:horizontal {
-    background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
-    @apply rounded-md w-16 bg-opacity-50;
-  }
+  // ::-webkit-scrollbar-thumb:horizontal {
+  //   background: linear-gradient(180deg, #A58CFF 0%, #8162F4 33.91%, #4C31B2 113.01%);
+  //   @apply rounded-md w-16 bg-opacity-50;
+  // }
   ::-webkit-scrollbar-track {
     @apply rounded-md;
   }
